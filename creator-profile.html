@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Profile</title>
+    <style>
+        :root {
+            --primary-color: #FFD700;
+            /* Yellow */
+            --secondary-color: #FFC107;
+            /* Darker Yellow */
+            --accent-color: #FFF59D;
+            /* Light Yellow */
+            --light-bg: #F8F9FA;
+            --dark-bg: #000000;
+            /* Black */
+            --text-light: #F8F9FA;
+            --text-dark: #222222;
+            /* Near Black */
+            --danger: #E74C3C;
+            --danger-hover: #C0392B;
+            --success: #2ECC71;
+            --warning: #F39C12;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .profile-card {
+            background-color: #222;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #222 100%);
+            color: var(--primary-color);
+            padding: 30px;
+            position: relative;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .profile-cover {
+            height: 150px;
+            background: var(--dark-bg);
+            position: relative;
+        }
+
+        .profile-photo-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50px;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--primary-color);
+            object-fit: cover;
+            box-shadow: var(--box-shadow);
+        }
+
+        .profile-title {
+            margin-left: 180px;
+        }
+
+        .profile-title h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .profile-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .profile-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .profile-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .profile-meta-item i {
+            font-size: 16px;
+            color: var(--primary-color);
+        }
+
+        .profile-body {
+            padding: 30px;
+            background-color: #333;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .section-icon {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 16px;
+            color: var(--text-light);
+        }
+
+        .bio-box {
+            background-color: #222;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-color);
+            margin-top: 10px;
+            font-style: italic;
+            color: #ddd;
+        }
+
+        .services-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .services-table th {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            text-align: left;
+            padding: 15px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .services-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #444;
+            color: #eee;
+        }
+
+        .services-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .services-table tr:nth-child(even) {
+            background-color: #2a2a2a;
+        }
+
+        .services-table tr:hover {
+            background-color: #3a3a3a;
+        }
+
+        .price {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .portfolio-item {
+            background-color: #222;
+            border-radius: var(--border-radius);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 1px solid #444;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .portfolio-content {
+            padding: 15px;
+        }
+
+        .portfolio-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+
+        .portfolio-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            word-break: break-all;
+            transition: color 0.2s ease;
+        }
+
+        .portfolio-link:hover {
+            color: var(--primary-color);
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .payment-method {
+            background-color: #222;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border: 1px solid #444;
+            color: #eee;
+        }
+
+        .payment-icon {
+            color: var(--primary-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            font-weight: 600;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+
+        .btn-danger:hover {
+            background-color: var(--danger-hover);
+            transform: translateY(-2px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #222;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--primary-color);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-icon {
+            font-size: 24px;
+            color: var(--danger);
+            margin-right: 15px;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--danger);
+        }
+
+        .modal-body {
+            margin-bottom: 25px;
+            line-height: 1.6;
+            color: #eee;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .btn-sm {
+            padding: 8px 20px;
+            font-size: 14px;
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 60px 30px;
+            background-color: #222;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-top: 30px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .error-icon {
+            font-size: 50px;
+            color: var(--warning);
+            margin-bottom: 20px;
+        }
+
+        .error-title {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .error-message {
+            color: #ccc;
+            font-size: 16px;
+            max-width: 400px;
+            margin: 0 auto 20px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                padding: 20px;
+            }
+
+            .profile-photo-container {
+                bottom: -50px;
+                left: 20px;
+            }
+
+            .profile-photo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .profile-title {
+                margin-left: 130px;
+            }
+
+            .profile-title h1 {
+                font-size: 22px;
+            }
+
+            .profile-subtitle {
+                font-size: 14px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Font Awesome style replacements */
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            stroke-width: 0;
+            stroke: currentColor;
+            fill: currentColor;
+            vertical-align: middle;
+        }
+    </style>
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-photo-container" id="profilePhotoContainer">
+                    <!-- Profile photo will be inserted here -->
+                </div>
+                <div class="profile-title">
+                    <h1 id="creatorName">Creator Name</h1>
+                    <div class="profile-subtitle" id="creatorType">Creator Type</div>
+                    <div class="profile-meta" id="creatorMeta">
+                        <!-- Meta info will be inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-body">
+                <div class="section" id="aboutSection">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="section-title">About</div>
+                    </div>
+                    <div class="info-grid" id="personalInfo">
+                        <!-- Personal info will be inserted here -->
+                    </div>
+                </div>
+
+                <div class="section" id="servicesSection">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="section-title">Services</div>
+                    </div>
+                    <div id="services">
+                        <!-- Services will be inserted here -->
+                    </div>
+                </div>
+
+                <div class="section" id="portfolioSection">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <i class="fas fa-images"></i>
+                        </div>
+                        <div class="section-title">Portfolio</div>
+                    </div>
+                    <div id="portfolio">
+                        <!-- Portfolio will be inserted here -->
+                    </div>
+                </div>
+
+                <div class="section" id="paymentSection">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="section-title">Payment Methods</div>
+                    </div>
+                    <div id="paymentMethods">
+                        <!-- Payment methods will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="noDataError" class="error-container" style="display: none;">
+            <div class="error-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h2 class="error-title">No Creator Data Found</h2>
+            <p class="error-message">There is no creator information to display. Please go back and search again.</p>
+            <button id="backButtonError" class="btn btn-primary"> <i class="fas fa-arrow-left"></i> Back </button>
+        </div>
+
+        <div class="action-buttons">
+            <button id="backButton" class="btn btn-primary" onclick="history.back()"><i class="fas fa-arrow-left"></i>
+                Back </button>
+
+            <button id="deleteButton" class="btn btn-danger">
+                <i class="fas fa-trash-alt"></i> Delete Account
+            </button>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="modal-title">Confirm Account Deletion</div>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this creator account? This action cannot be undone and will remove
+                    all associated services, portfolio items, and payment methods.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelDelete" class="btn btn-sm">Cancel</button>
+                <button id="confirmDelete" class="btn btn-sm btn-danger">Delete Account</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const profileCard = document.querySelector('.profile-card');
+            const noDataError = document.getElementById('noDataError');
+            const backButton = document.getElementById('backButton');
+            const backButtonError = document.getElementById('backButtonError');
+            const deleteButton = document.getElementById('deleteButton');
+            const deleteModal = document.getElementById('deleteModal');
+            const cancelDelete = document.getElementById('cancelDelete');
+            const confirmDelete = document.getElementById('confirmDelete');
+            const profilePhotoContainer = document.getElementById('profilePhotoContainer');
+
+            // Get creator data from localStorage
+            const creatorDataString = localStorage.getItem('creatorData');
+            let creatorData = null;
+            let creatorId = null;
+
+            // Check if we have data
+            if (creatorDataString) {
+                try {
+                    creatorData = JSON.parse(creatorDataString);
+                    creatorId = creatorData.creator.id;
+
+                    // Display creator information
+                    displayCreatorInfo(creatorData);
+                    profileCard.style.display = 'block';
+                    noDataError.style.display = 'none';
+                } catch (error) {
+                    console.error('Error parsing creator data:', error);
+                    profileCard.style.display = 'none';
+                    noDataError.style.display = 'block';
+                    deleteButton.style.display = 'none';
+                }
+            } else {
+                // No data found
+                profileCard.style.display = 'none';
+                noDataError.style.display = 'block';
+                deleteButton.style.display = 'none';
+            }
+
+            // Back button functionality
+            backButton.addEventListener('click', function () {
+                window.location.href = 'login.html';
+            });
+
+            backButtonError.addEventListener('click', function () {
+                window.location.href = 'index.html';
+            });
+
+            // Delete button functionality
+            deleteButton.addEventListener('click', function () {
+                deleteModal.style.display = 'flex';
+            });
+
+            // Cancel delete
+            cancelDelete.addEventListener('click', function () {
+                deleteModal.style.display = 'none';
+            });
+
+            // Click outside to close
+            window.addEventListener('click', function (event) {
+                if (event.target === deleteModal) {
+                    deleteModal.style.display = 'none';
+                }
+            });
+
+            // Confirm delete
+            confirmDelete.addEventListener('click', function () {
+                if (creatorId) {
+                    deleteCreator(creatorId);
+                }
+            });
+
+            
+            async function deleteCreator(id) {
+    const confirmBtn = document.getElementById('confirmDelete');
+    const originalText = confirmBtn.innerHTML;
+
+    try {
+        // Show loading state
+        confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
+        confirmBtn.disabled = true;
+        
+        console.log(`Sending delete request for creator ID: ${id}`);
+
+        // Make API call to delete the creator
+        const response = await fetch('/api/delete_creator', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ creator_id: id })
+        });
+        
+        console.log(`Response status: ${response.status}`);
+
+        // Check if the response is valid
+        if (!response.ok) {
+            const contentType = response.headers.get('content-type');
+            let errorMessage;
+            
+            if (contentType && contentType.includes('application/json')) {
+                const errorData = await response.json();
+                errorMessage = errorData.message || `Request failed with status ${response.status}`;
+            } else {
+                const errorText = await response.text();
+                errorMessage = `Server error (${response.status}): ${errorText || 'No response details'}`;
+            }
+            
+            console.error(`Error response: ${errorMessage}`);
+            throw new Error(errorMessage);
+        }
+
+        // Parse JSON response
+        const data = await response.json();
+        console.log(`Success response:`, data);
+
+        if (data.success) {
+            // Show success message
+            alert('Creator deleted successfully!');
+            // Remove from localStorage
+            localStorage.removeItem('creatorData');
+            // Redirect to home page
+            window.location.href = 'index.html';
+        } else {
+            throw new Error(data.message || 'Deletion failed');
+        }
+    } catch (error) {
+        console.error('Deletion error:', error);
+        alert(`Failed to delete creator: ${error.message}`);
+    } finally {
+        // Reset button state
+        confirmBtn.innerHTML = originalText;
+        confirmBtn.disabled = false;
+        deleteModal.style.display = 'none';
+    }
+}
+
+
+            function displayCreatorInfo(data) {
+                const creator = data.creator;
+
+                // Display profile photo
+                if (creator.profile_photo) {
+                    profilePhotoContainer.innerHTML = `<img src="data:image/jpeg;base64,${creator.profile_photo}" alt="Profile Photo" class="profile-photo">`;
+                } else {
+                    // Default placeholder if no photo
+                    profilePhotoContainer.innerHTML = `<div class="profile-photo" style="background-color: var(--secondary-color); display: flex; align-items: center; justify-content: center; color: var(--dark-bg); font-weight: bold; font-size: 36px;">${creator.full_name.charAt(0)}</div>`;
+                }
+
+                // Set creator name and type
+                document.getElementById('creatorName').textContent = creator.full_name;
+                document.getElementById('creatorType').textContent = capitalizeFirstLetter(creator.creator_type);
+
+                // Display meta information
+                const metaInfo = `
+                    <div class="profile-meta-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>${creator.location}</span>
+                    </div>
+                    <div class="profile-meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>${creator.availability}</span>
+                    </div>
+                    <div class="profile-meta-item">
+                        <i class="fas fa-history"></i>
+                        <span>${creator.experience} years experience</span>
+                    </div>
+                `;
+                document.getElementById('creatorMeta').innerHTML = metaInfo;
+
+                // Display personal information
+                displayPersonalInfo(creator);
+
+                // Display services
+                displayServices(data.services);
+
+                // Display portfolio
+                displayPortfolio(data.portfolio);
+
+                // Display payment methods
+                displayPaymentMethods(data.payment_methods);
+            }
+
+            function displayPersonalInfo(creator) {
+                let personalInfoHtml = `
+                    <div class="info-item">
+                        <div class="info-label">Email</div>
+                        <div class="info-value">${creator.email}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Phone</div>
+                        <div class="info-value">${creator.phone}</div>
+                    </div>
+                `;
+
+                if (creator.website) {
+                    personalInfoHtml += `
+                        <div class="info-item">
+                            <div class="info-label">Website</div>
+                            <div class="info-value">
+                                <a href="${creator.website}" target="_blank" style="color: var(--accent-color); text-decoration: none;">
+                                    ${creator.website}
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                if (creator.instagram) {
+                    personalInfoHtml += `
+                        <div class="info-item">
+                            <div class="info-label">Instagram</div>
+                            <div class="info-value">@${creator.instagram}</div>
+                        </div>
+                    `;
+                }
+
+                if (creator.equipment) {
+                    personalInfoHtml += `
+                        <div class="info-item">
+                            <div class="info-label">Equipment</div>
+                            <div class="info-value">${creator.equipment}</div>
+                        </div>
+                    `;
+                }
+
+                // Bio gets full width
+                if (creator.bio) {
+                    personalInfoHtml += `
+                        <div class="info-item" style="grid-column: 1 / -1;">
+                            <div class="info-label">Bio</div>
+                            <div class="bio-box">${creator.bio}</div>
+                        </div>
+                    `;
+                }
+
+                document.getElementById('personalInfo').innerHTML = personalInfoHtml;
+            }
+
+            function displayServices(services) {
+                let servicesHtml = '';
+
+                if (services && services.length > 0) {
+                    servicesHtml = `
+                        <table class="services-table">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Price</th>
+                                    <th>Unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+
+                    services.forEach(service => {
+                        servicesHtml += `
+                            <tr>
+                                <td>${service.service_name}</td>
+                                <td class="price">₹${parseFloat(service.price).toFixed(2)}</td>
+                                <td>${service.unit}</td>
+                            </tr>
+                        `;
+                    });
+
+                    servicesHtml += `
+                            </tbody>
+                        </table>
+                    `;
+                } else {
+                    servicesHtml = `<p style="color: #aaa; font-style: italic;">No services listed.</p>`;
+                }
+
+                document.getElementById('services').innerHTML = servicesHtml;
+            }
+
+            function displayPortfolio(portfolio) {
+                let portfolioHtml = '';
+
+                if (portfolio && portfolio.length > 0) {
+                    portfolioHtml = '<div class="portfolio-grid">';
+
+                    portfolio.forEach((item, index) => {
+                        portfolioHtml += `
+                            <div class="portfolio-item">
+                                <div class="portfolio-content">
+                                    <div class="portfolio-title">Portfolio Item ${index + 1}</div>
+                                    <a href="${item.portfolio_link}" target="_blank" class="portfolio-link">
+                                        <i class="fas fa-external-link-alt"></i> View Project
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    portfolioHtml += '</div>';
+                } else {
+                    portfolioHtml = `<p style="color: #aaa; font-style: italic;">No portfolio items available.</p>`;
+                }
+
+                document.getElementById('portfolio').innerHTML = portfolioHtml;
+            }
+
+            function displayPaymentMethods(paymentMethods) {
+                let paymentHtml = '';
+
+                if (paymentMethods && paymentMethods.length > 0) {
+                    paymentHtml = '<div class="payment-methods">';
+
+                    const paymentIcons = {
+                        'bank-transfer': 'fa-university',
+                        'paypal': 'fa-paypal',
+                        'credit-card': 'fa-credit-card',
+                        'cash': 'fa-money-bill-wave'
+                    };
+
+                    paymentMethods.forEach(method => {
+                        const iconClass = paymentIcons[method.method] || 'fa-credit-card';
+
+                        paymentHtml += `
+                            <div class="payment-method">
+                                <span class="payment-icon">
+                                    <i class="fas ${iconClass}"></i>
+                                </span>
+                                <span>${formatPaymentMethod(method.method)}</span>
+                            </div>
+                        `;
+                    });
+
+                    paymentHtml += '</div>';
+                } else {
+                    paymentHtml = `<p style="color: #aaa; font-style: italic;">No payment methods listed.</p>`;
+                }
+
+                document.getElementById('paymentMethods').innerHTML = paymentHtml;
+            }
+
+            // Helper functions
+            function capitalizeFirstLetter(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
+
+            function formatPaymentMethod(method) {
+                return method.split('-').map(capitalizeFirstLetter).join(' ');
+            }
+        });
+    </script>
+</body>
+
+</html>

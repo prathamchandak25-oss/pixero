@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Login Page</title>
+    <style>
+        :root {
+            --primary-color: #ffd700;
+            --primary-hover: #f0c000;
+            --dark-text: #333333;
+            --medium-grey: #666666;
+            --light-bg: #f9f9f9;
+            --white: #ffffff;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #9e9e9e;
+            color: var(--dark-text);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: var(--primary-color);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: var(--dark-text);
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .content {
+            padding: 25px;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--medium-grey);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input[type="email"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="email"]:focus,
+        input[type="text"]:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+
+        .button {
+            background-color: var(--primary-color);
+            color: var(--dark-text);
+            font-weight: bold;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: all;
+            transition-timing-function: ease;
+            transition-duration: 200ms;
+        }
+
+        .button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+        }
+
+        .divider-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: #ddd;
+        }
+
+        .divider-text {
+            padding: 0 15px;
+            color: var(--medium-grey);
+            font-size: 14px;
+        }
+
+        .otp-section {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .otp-section h3 {
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+
+        .otp-input {
+            letter-spacing: 10px;
+            font-size: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .otp-note {
+            font-size: 14px;
+            color: var(--medium-grey);
+            margin: 10px 0;
+        }
+
+        #generateOtpBtn {
+            color: #333;
+            background-color: #939393;
+            margin-top: 5px;
+        }
+
+        .error {
+            color: #d9534f;
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        a{
+            color: inherit;
+        }
+
+        .header h4 a{
+            font-weight: 600;
+        }
+
+        
+        .back {
+            position: fixed;
+            bottom: 2.5em;
+            right: 3em;
+            height: 4em;
+            width: 9em;
+            color: #000;
+            font-size: 1em;
+            border-radius: 2em;
+            border: none;
+            background-color: #FFD100;
+            z-index: 100;
+            font-weight: bolder;
+        }
+        
+        .back:hover {
+            transform: scale(1.1);
+            background-color: #E6BC00;
+            transition: all;
+            transition-duration: 300ms;
+            transition-timing-function: ease;
+        }
+
+        .back a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        @media screen and (max-width: 768px) {
+            .back {
+                display: none;
+            }
+        }
+
+
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Login Here</h1>
+            <h4> <a href="creator.html">or Register</a></h4>
+        </div>
+
+        <div class="content">
+            <p class="intro-text">Enter an email address which you used to create an account.</p>
+
+            <form id="searchForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email address" required>
+                </div>
+                <button type="submit" class="button">Generate OTP</button>
+            </form>
+
+            <div class="section-divider">
+                <div class="divider-line"></div>
+                <div class="divider-text">Verification</div>
+                <div class="divider-line"></div>
+            </div>
+
+            <div id="otpSection" class="otp-section">
+                <h3>Verify Your Identity</h3>
+                <p>Enter the verification code to login</p>
+
+                <div class="form-group">
+                    <label for="otpInput">Verification Code</label>
+                    <input type="text" id="otpInput" class="otp-input" maxlength="4" placeholder="••••">
+                    <p class="otp-note">The code is valid for 5 minutes.</p>
+                </div>
+
+                <button id="verifyOtpBtn" class="button">Verify Code</button>
+                <button id="generateOtpBtn" class="button">Generate New OTP</button>
+        
+                
+                <div id="successMessage" class="success-message">Authentication successful! Redirecting...</div>
+            </div>
+
+            <div id="error" class="error"></div>
+        </div>
+
+    </div>
+    <button class="back"><a href="index.html">Go to Home</a></button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // API endpoint URL - change this to match your backend
+            const API_URL = '/api/search';
+
+            const searchForm = document.getElementById('searchForm');
+            const errorDiv = document.getElementById('error');
+            const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+            const generateOtpBtn = document.getElementById('generateOtpBtn');
+            const successMessage = document.getElementById('successMessage');
+
+            let generatedOtp = '';
+            let searchEmail = '';
+            let creatorData = null;
+
+            // Generate a random 4-digit OTP
+            function generateOTP() {
+                return Math.floor(1000 + Math.random() * 9000).toString();
+            }
+
+            searchForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                searchEmail = document.getElementById('email').value;
+
+                // Reset UI elements
+                errorDiv.textContent = '';
+                errorDiv.style.display = 'none';
+                successMessage.style.display = 'none';
+
+                // First check if email exists in the system
+                fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: searchEmail })
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(data => {
+                                throw new Error(data.error || 'An error occurred');
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Store the data for later use
+                        creatorData = data;
+
+                        // Generate OTP and show the OTP verification screen
+                        generatedOtp = generateOTP();
+
+                        // Show OTP to user via alert (simulating OTP sent via email/SMS)
+                        alert(`Your OTP for verification is: ${generatedOtp}`);
+                    })
+                    .catch(error => {
+                        errorDiv.textContent = error.message || 'An error occurred while processing your request.';
+                        errorDiv.style.display = 'block';
+                        console.error('Error:', error);
+                    });
+            });
+
+            // Generate new OTP
+            generateOtpBtn.addEventListener('click', function () {
+                if (!searchEmail) {
+                    alert('Please enter and search an email address first.');
+                    return;
+                }
+
+                // Generate a new OTP
+                generatedOtp = generateOTP();
+
+                // Show OTP to user via alert (simulating OTP sent via email/SMS)
+                alert(`Your new OTP for verification is: ${generatedOtp}`);
+            });
+
+            // OTP verification
+            verifyOtpBtn.addEventListener('click', function () {
+                const enteredOtp = document.getElementById('otpInput').value;
+
+                if (!searchEmail) {
+                    alert('Please enter and search an email address first.');
+                    return;
+                }
+
+                if (enteredOtp === generatedOtp) {
+                    // OTP is correct, show success message briefly
+                    successMessage.style.display = 'block';
+
+                    // Store the creator data in localStorage to be accessed by the results page
+                    localStorage.setItem('creatorData', JSON.stringify(creatorData));
+
+                    // Redirect to the results page after a brief delay
+                    setTimeout(function () {
+                        window.location.href = 'creator-profile.html';
+                    }, 1500);
+                } else {
+                    // OTP is incorrect
+                    alert('Invalid OTP. Please try again.');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,339 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Creator Login</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 20px;
+            }
+            
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }
+            
+            h1, h2, h3 {
+                color: #333;
+            }
+            
+            .form-group {
+                margin-bottom: 15px;
+            }
+            
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            
+            .form-group input {
+                width: 100%;
+                padding: 8px;
+                box-sizing: border-box;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+            
+            button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            
+            button:hover {
+                background-color: #45a049;
+            }
+            
+            .error {
+                color: red;
+                margin: 10px 0;
+            }
+            
+            #userInfo {
+                display: none;
+                margin-top: 20px;
+            }
+            
+            .info-row {
+                margin-bottom: 10px;
+            }
+            
+            .info-label {
+                font-weight: bold;
+                display: inline-block;
+                width: 120px;
+            }
+            
+            .delete-btn {
+                background-color: #f44336;
+                margin-top: 20px;
+            }
+            
+            .delete-btn:hover {
+                background-color: #d32f2f;
+            }
+            
+            .back-btn {
+                background-color: #808080;
+                margin-left: 10px;
+            }
+            
+            .section {
+                margin-top: 20px;
+                border-top: 1px solid #eee;
+                padding-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div id="loginSection">
+                <h1>Creator Login</h1>
+                <div class="error" id="errorMessage"></div>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+            
+            <div id="userInfo">
+                <h2>Creator Information</h2>
+                <div id="creatorDetails"></div>
+                
+                <div class="section">
+                    <h3>Services</h3>
+                    <div id="services"></div>
+                </div>
+                
+                <div class="section">
+                    <h3>Portfolio</h3>
+                    <div id="portfolio"></div>
+                </div>
+                
+                <div class="section">
+                    <h3>Payment Methods</h3>
+                    <div id="payments"></div>
+                </div>
+                
+                <button id="deleteBtn" class="delete-btn">Delete Account</button>
+                <button id="backBtn" class="back-btn">Back to Login</button>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const loginForm = document.getElementById('loginForm');
+                const errorMessage = document.getElementById('errorMessage');
+                const loginSection = document.getElementById('loginSection');
+                const userInfo = document.getElementById('userInfo');
+                const deleteBtn = document.getElementById('deleteBtn');
+                const backBtn = document.getElementById('backBtn');
+                
+                // Login form submission
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const email = document.getElementById('email').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    
+                    // Validate inputs
+                    if (!email || !phone) {
+                        showError('Please enter both email and phone number');
+                        return;
+                    }
+                    
+                    // API call to backend
+                    fetch('/api/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email, phone })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Display creator information
+                            displayCreatorInfo(data.data);
+                            
+                            // Show user info section
+                            loginSection.style.display = 'none';
+                            userInfo.style.display = 'block';
+                            errorMessage.style.display = 'none';
+                            
+                            // Store creator ID for delete function
+                            deleteBtn.dataset.creatorId = data.data.creator.id;
+                        } else {
+                            showError(data.message || 'Invalid credentials');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        showError('An error occurred. Please try again later.');
+                    });
+                });
+                
+                // Delete button click
+                deleteBtn.addEventListener('click', function() {
+                    const creatorId = this.dataset.creatorId;
+                    
+                    if (confirm('Are you sure you want to delete this account? This action cannot be undone.')) {
+                        // API call to delete account
+                        fetch(`/api/delete/${creatorId}`, {
+                            method: 'DELETE'
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('Account deleted successfully!');
+                                
+                                // Return to login screen
+                                userInfo.style.display = 'none';
+                                loginSection.style.display = 'block';
+                                loginForm.reset();
+                            } else {
+                                alert(data.message || 'Failed to delete account');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('An error occurred while trying to delete the account.');
+                        });
+                    }
+                });
+                
+                // Back button click
+                backBtn.addEventListener('click', function() {
+                    userInfo.style.display = 'none';
+                    loginSection.style.display = 'block';
+                    loginForm.reset();
+                    errorMessage.style.display = 'none';
+                });
+                
+                // Show error message
+                function showError(message) {
+                    errorMessage.textContent = message;
+                    errorMessage.style.display = 'block';
+                }
+                
+                // Display creator information
+                function displayCreatorInfo(data) {
+                    const creator = data.creator;
+                    
+                    // Creator details
+                    let creatorHTML = '';
+                    const fields = [
+                        { label: 'Name', value: creator.full_name },
+                        { label: 'Email', value: creator.email },
+                        { label: 'Phone', value: creator.phone },
+                        { label: 'Type', value: creator.creator_type },
+                        { label: 'Location', value: creator.location },
+                        { label: 'Experience', value: `${creator.experience} years` },
+                        { label: 'Bio', value: creator.bio },
+                        { label: 'Availability', value: creator.availability }
+                    ];
+                    
+                    if (creator.equipment) {
+                        fields.push({ label: 'Equipment', value: creator.equipment });
+                    }
+                    
+                    if (creator.website) {
+                        fields.push({ label: 'Website', value: `<a href="${creator.website}" target="_blank">${creator.website}</a>` });
+                    }
+                    
+                    if (creator.instagram) {
+                        fields.push({ label: 'Instagram', value: creator.instagram });
+                    }
+                    
+                    fields.forEach(field => {
+                        creatorHTML += `
+                            <div class="info-row">
+                                <span class="info-label">${field.label}:</span>
+                                <span>${field.value}</span>
+                            </div>
+                        `;
+                    });
+                    
+                    document.getElementById('creatorDetails').innerHTML = creatorHTML;
+                    
+                    // Services
+                    let servicesHTML = '';
+                    
+                    if (data.services && data.services.length > 0) {
+                        data.services.forEach(service => {
+                            servicesHTML += `
+                                <div class="info-row">
+                                    <span class="info-label">${service.service_name}:</span>
+                                    <span>$${service.price} per ${service.unit}</span>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        servicesHTML = '<p>No services listed.</p>';
+                    }
+                    
+                    document.getElementById('services').innerHTML = servicesHTML;
+                    
+                    // Portfolio
+                    let portfolioHTML = '';
+                    
+                    if (data.portfolio && data.portfolio.length > 0) {
+                        data.portfolio.forEach(item => {
+                            portfolioHTML += `
+                                <div class="info-row">
+                                    <span class="info-label">Link:</span>
+                                    <span><a href="${item.portfolio_link}" target="_blank">${item.portfolio_link}</a></span>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        portfolioHTML = '<p>No portfolio links available.</p>';
+                    }
+                    
+                    document.getElementById('portfolio').innerHTML = portfolioHTML;
+                    
+                    // Payment methods
+                    let paymentsHTML = '';
+                    
+                    if (data.payment_methods && data.payment_methods.length > 0) {
+                        paymentsHTML = '<div class="info-row">';
+                        data.payment_methods.forEach((payment, index) => {
+                            paymentsHTML += payment.method;
+                            if (index < data.payment_methods.length - 1) {
+                                paymentsHTML += ', ';
+                            }
+                        });
+                        paymentsHTML += '</div>';
+                    } else {
+                        paymentsHTML = '<p>No payment methods listed.</p>';
+                    }
+                    
+                    document.getElementById('payments').innerHTML = paymentsHTML;
+                }
+            });
+        </script>
+    </body>
+    </html>
+    

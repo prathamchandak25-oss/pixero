@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join as Creator - Photography Platform</title>
+    <link rel="stylesheet" href="creator.css">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Join Our Creative Community</h1>
+            <p class="subtitle">Share your skills, set your rates, and connect with clients</p>
+        </header>
+
+        <div class="tabs">
+            <div class="tab active" data-type="photographer">Photographer</div>
+            <div class="tab" data-type="editor">Editor</div>
+        </div>
+
+        <form id="creator-form">
+            <input type="hidden" id="creator-type" name="creator_type" value="photographer">
+
+            <div class="form-group">
+                <label for="full-name">Full Name *</label>
+                <input type="text" id="full-name" name="full_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location *</label>
+                <input type="text" id="location" name="location" placeholder="City, Country" required>
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Years of Experience *</label>
+                <input type="number" id="experience" name="experience" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="equipment">Equipment Used</label>
+                <input type="text" id="equipment" name="equipment" placeholder="Camera models, Gimbal, editing software, etc.">
+            </div>
+
+            <div class="form-group full-width">
+                <label for="bio">Bio/Description *</label>
+                <textarea id="bio" name="bio" placeholder="Tell us about yourself and your work style..."
+                    required></textarea>
+            </div>
+
+            <div class="form-group">
+                <div class="photo-upload">
+                    <label>Profile Photo</label>
+                    <div class="photo-preview" id="photo-preview">
+                        <span>Upload Photo</span>
+                    </div>
+                    <input type="file" id="profile-photo" name="profile_photo" accept="image/*" style="display: none;">
+                    <button type="button" id="upload-photo-btn">Choose Photo</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="website">Website/Portfolio URL</label>
+                <input type="url" id="website" name="website" placeholder="https://yourportfolio.com">
+            </div>
+
+            <div class="form-group">
+                <label for="instagram">Instagram Handle</label>
+                <input type="text" id="instagram" name="instagram" placeholder="@yourusername">
+            </div>
+
+            <div class="form-group">
+                <label for="availability">Availability *</label>
+                <select id="availability" name="availability" required>
+                    <option value="">Select availability</option>
+                    <option value="full-time">Full-time</option>
+                    <option value="part-time">Part-time</option>
+                    <option value="weekends">Weekends only</option>
+                    <option value="custom">Custom schedule</option>
+                </select>
+            </div>
+
+            <div class="form-group full-width services-section" id="photographer-services">
+                <label>Services & Pricing *</label>
+                <div class="service-item">
+                    <input type="checkbox" id="portrait" name="services" value="portrait">
+                    <label for="portrait">Portrait Photography</label>
+                    <div class="service-price">
+                        <span>₹</span>
+                        <input type="number" name="portrait_price" placeholder="Price">
+                        <span>per hour</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <input type="checkbox" id="wedding" name="services" value="wedding">
+                    <label for="wedding">Wedding Photography</label>
+                    <div class="service-price">
+                        <span>₹</span>
+                        <input type="number" name="wedding_price" placeholder="Price">
+                        <span>per event</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <input type="checkbox" id="event" name="services" value="event">
+                    <label for="event">Event Photography</label>
+                    <div class="service-price">
+                        <span>₹</span>
+                        <input type="number" name="event_price" placeholder="Price">
+                        <span>per hour</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <input type="checkbox" id="product" name="services" value="product">
+                    <label for="product">Product Photography</label>
+                    <div class="service-price">
+                        <span>₹</span>
+                        <input type="number" name="product_price" placeholder="Price">
+                        <span>per item</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <input type="checkbox" id="architectural" name="services" value="architectural">
+                    <label for="architectural">Architectural Photography</label>
+                    <div class="service-price">
+                        <span>₹</span>
+                        <input type="number" name="architectural_price" placeholder="Price">
+                        <span>per project</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="form-group full-width services-section hidden" id="editor-services">
+                <label>Services & Pricing *</label>
+                <div class="service-item">
+                    <input type="checkbox" id="photo-editing" name="services" value="photo-editing">
+                    <label for="photo-editing">Photo Editing</label>
+                    <div class="service-price">
+                        <span>₹</span>
+                        <input type="number" name="photo_editing_price" placeholder="Price">
+                        <span>per photo</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <input type="checkbox" id="color-grading" name="services" value="color-grading">
+                    <label for="color-grading">Video Editing</label>
+                    <div class="service-price">
+                        <span>₹</span>
+                        <input type="number" name="color_grading_price" placeholder="Price">
+                        <span>per photo</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <input type="checkbox" id="retouching" name="services" value="retouching">
+                    <label for="retouching">Retouching</label>
+                    <div class="service-price">
+                        <span>₹</span>
+                        <input type="number" name="retouching_price" placeholder="Price">
+                        <span>per photo</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <input type="checkbox" id="compositing" name="services" value="compositing">
+                    <label for="compositing">Compositing</label>
+                    <div class="service-price">
+                        <span>₹</span>
+                        <input type="number" name="compositing_price" placeholder="Price">
+                        <span>per project</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <input type="checkbox" id="batch-processing" name="services" value="batch-processing">
+                    <label for="batch-processing">Batch Processing</label>
+                    <div class="service-price">
+                        <span>₹</span>
+                        <input type="number" name="batch_processing_price" placeholder="Price">
+                        <span>per 100 photos</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group full-width portfolio-section">
+                <label>Portfolio Links (Add your best work)</label>
+                <div id="portfolio-links">
+                    <div class="portfolio-item">
+                        <input type="url" name="portfolio[]" placeholder="https://example.com/your-work">
+                        <span class="add-more" id="add-portfolio">+ Add More</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="payment-methods">Accepted Payment Methods</label>
+                <div class="service-item">
+                    <input type="checkbox" id="bank-transfer" name="payment_methods" value="bank-transfer">
+                    <label for="bank-transfer">Bank Transfer</label>
+                </div>
+                <div class="service-item">
+                    <input type="checkbox" id="paypal" name="payment_methods" value="paypal">
+                    <label for="paypal">UPI</label>
+                </div>
+                <div class="service-item">
+                    <input type="checkbox" id="credit-card" name="payment_methods" value="credit-card">
+                    <label for="credit-card">Credit Card</label>
+                </div>
+                <div class="service-item">
+                    <input type="checkbox" id="cash" name="payment_methods" value="cash">
+                    <label for="cash">Cash</label>
+                </div>
+            </div>
+
+            <div class="agreement">
+                <input type="checkbox" id="agree" required>
+                <label for="agree">I agree to the <a href="Terms.html" target="_blank">Terms & Conditions</a> and want to continue.</label>
+              </div>
+              
+
+
+            <div class="form-group full-width">
+                <button type="submit" id="submit-btn">Join as Creator</button>
+                <p class="success-message hidden" id="success-message">Registration successful! We'll review your
+                    information and get back to you soon.</p>
+            </div>
+        </form>
+    </div>
+
+    <button class="back"><a href="index.html">Go to Home</a></button>
+
+    <script src="creator.js"></script>
+</body>
+
+</html>

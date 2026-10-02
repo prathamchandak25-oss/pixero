@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixero - Terms and Conditions</title>
+  <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2c3e50;
+      --accent-color: #e74c3c;
+      --light-gray: #f5f5f5;
+      --dark-gray: #333;
+      --text-color: #444;
+      --border-radius: 8px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--light-gray);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 20px 0;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo span {
+      color: var(--primary-color);
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 20px;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+    
+    .terms-container {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      margin: 40px 0;
+    }
+    
+    h1 {
+      color: var(--secondary-color);
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    
+    h2 {
+      color: var(--primary-color);
+      font-size: 24px;
+      margin: 30px 0 15px;
+      border-bottom: 1px solid var(--light-gray);
+      padding-bottom: 10px;
+    }
+    
+    p {
+      margin-bottom: 20px;
+    }
+    
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+    
+    li {
+      margin-bottom: 10px;
+    }
+    
+    .highlight {
+      background-color: #fffce0;
+      padding: 20px;
+      border-left: 4px solid var(--accent-color);
+      margin: 20px 0;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+    
+    .toc {
+      background-color: var(--light-gray);
+      padding: 20px;
+      border-radius: var(--border-radius);
+      margin-bottom: 30px;
+    }
+    
+    .toc h3 {
+      margin-bottom: 15px;
+      color: var(--secondary-color);
+    }
+    
+    .toc ol {
+      list-style-type: none;
+      counter-reset: item;
+      margin-left: 0;
+    }
+    
+    .toc ol li {
+      counter-increment: item;
+      margin-bottom: 8px;
+    }
+    
+    .toc ol li:before {
+      content: counter(item) ". ";
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+    
+    .toc a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    
+    .toc a:hover {
+      text-decoration: underline;
+    }
+    
+    .section {
+      margin-bottom: 40px;
+    }
+    
+    .date {
+      font-style: italic;
+      margin-bottom: 30px;
+      color: #777;
+    }
+    
+    footer {
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+    }
+    
+    .footer-links {
+      margin-top: 20px;
+    }
+    
+    .footer-links a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary-color);
+    }
+    
+    @media (max-width: 768px) {
+      .terms-container {
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 28px;
+      }
+      
+      h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Pixero<span>.</span></a>
+      </nav>
+    </div>
+  </header>
+  
+  <div class="container">
+    <div class="terms-container">
+      <h1>Terms and Conditions</h1>
+      <p class="date">Last Updated: April 5, 2025</p>
+      
+      <div class="toc">
+        <h3>Table of Contents</h3>
+        <ol>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#definitions">Definitions</a></li>
+          <li><a href="#account">Account Registration</a></li>
+          <li><a href="#services">Services and Platform Use</a></li>
+          <li><a href="#content">Content and Intellectual Property</a></li>
+          <li><a href="#fees">Fees and Payments</a></li>
+          <li><a href="#privacy">Privacy Policy</a></li>
+          <li><a href="#liability">Limitation of Liability</a></li>
+          <li><a href="#disputes">Dispute Resolution</a></li>
+          <li><a href="#termination">Termination</a></li>
+          <li><a href="#changes">Changes to Terms</a></li>
+          <li><a href="#contact">Contact Information</a></li>
+        </ol>
+      </div>
+      
+      <div class="section" id="introduction">
+        <h2>1. Introduction</h2>
+        <p>Welcome to Pixero. These Terms and Conditions govern your use of the Pixero platform, including all services provided through our website and mobile applications (collectively, the "Platform"). By accessing or using our Platform, you agree to be bound by these Terms. If you do not agree with any part of these Terms, you may not use our Platform.</p>
+        <p>Pixero provides a platform where photographers and editors ("Service Providers") can register their profiles, showcase their work, and connect with users seeking their services ("Clients"). We do not provide photography or editing services directly.</p>
+      </div>
+      
+      <div class="section" id="definitions">
+        <h2>2. Definitions</h2>
+        <p>Throughout these Terms, the following definitions apply:</p>
+        <ul>
+          <li><strong>Pixero</strong> ("we," "us," or "our"): The company operating the Platform.</li>
+          <li><strong>Platform</strong>: The website, applications, and services offered by Pixero.</li>
+          <li><strong>User</strong>: Any individual or entity that accesses or uses the Platform.</li>
+          <li><strong>Service Provider</strong>: Photographers and editors who register profiles on the Platform.</li>
+          <li><strong>Client</strong>: Users who seek services from Service Providers through the Platform.</li>
+          <li><strong>Content</strong>: Any information, text, graphics, photos, videos, or other materials uploaded to or displayed on the Platform.</li>
+        </ul>
+      </div>
+      
+      <div class="section" id="account">
+        <h2>3. Account Registration</h2>
+        <p>To use certain features of our Platform, you must register for an account. When registering, you agree to:</p>
+        <ul>
+          <li>Provide accurate, current, and complete information about yourself.</li>
+          <li>Maintain and promptly update your account information.</li>
+          <li>Keep your password secure and confidential.</li>
+          <li>Be responsible for all activities that occur under your account.</li>
+          <li>Notify us immediately of any unauthorized use of your account.</li>
+        </ul>
+        
+        <div class="highlight">
+          <p>You must be at least 18 years old to create an account. By creating an account, you represent and warrant that you are at least 18 years old.</p>
+        </div>
+        
+        <p>Service Providers must additionally:</p>
+        <ul>
+          <li>Verify their identity through our verification process.</li>
+          <li>Provide accurate professional information and portfolio samples.</li>
+          <li>Maintain updated availability information.</li>
+          <li>Comply with all applicable laws and regulations in providing their services.</li>
+        </ul>
+      </div>
+      
+      <div class="section" id="services">
+        <h2>4. Services and Platform Use</h2>
+        <p>Pixero provides a platform for Service Providers and Clients to connect. Our services include:</p>
+        <ul>
+          <li>Profile creation and management for Service Providers.</li>
+          <li>Search and discovery tools for Clients to find appropriate Service Providers.</li>
+          <li>Messaging system for communication between parties.</li>
+          <li>Booking and scheduling tools.</li>
+          <li>Review and rating systems.</li>
+        </ul>
+        
+        <p>Users agree to:</p>
+        <ul>
+          <li>Use the Platform in accordance with these Terms.</li>
+          <li>Not use the Platform for any illegal or unauthorized purpose.</li>
+          <li>Not interfere with the proper functioning of the Platform.</li>
+          <li>Not attempt to access data not intended for you.</li>
+          <li>Not harass, abuse, or harm other users.</li>
+        </ul>
+      </div>
+      
+      <div class="section" id="content">
+        <h2>5. Content and Intellectual Property</h2>
+        <p>When you upload Content to the Platform, you retain ownership of your intellectual property rights. However, by uploading Content, you grant Pixero a non-exclusive, worldwide, royalty-free license to use, reproduce, modify, adapt, publish, and display such Content for the purposes of operating and promoting the Platform.</p>
+        
+        <p>You represent and warrant that:</p>
+        <ul>
+          <li>You own or have the necessary rights to the Content you upload.</li>
+          <li>Your Content does not infringe upon the intellectual property rights of any third party.</li>
+          <li>Your Content does not violate any applicable laws or regulations.</li>
+        </ul>
+        
+        <div class="highlight">
+          <p>Pixero respects intellectual property rights and expects users to do the same. We will respond to notices of alleged copyright infringement as required by law.</p>
+        </div>
+      </div>
+      
+      <div class="section" id="fees">
+        <h2>6. Fees and Payments</h2>
+        <p>Pixero charges the following fees:</p>
+        <ul>
+          <li>Service Providers may be charged a subscription fee for premium profile features.</li>
+          <li>A service fee may be charged on transactions facilitated through the Platform.</li>
+          <li>Additional fees may apply for promotional features or services.</li>
+        </ul>
+        
+        <p>All fees are clearly displayed before you incur them. By using paid features, you agree to pay all applicable fees. Payment terms will be specified during the transaction process.</p>
+        
+        <p>Service Providers and Clients are responsible for establishing their own pricing for services. Pixero does not set prices for photography or editing services provided by Service Providers.</p>
+      </div>
+      
+      <div class="section" id="privacy">
+        <h2>7. Privacy Policy</h2>
+        <p>Your privacy is important to us. Our Privacy Policy explains how we collect, use, and protect your personal information. By using our Platform, you consent to the collection and use of information as described in our Privacy Policy.</p>
+        
+        <p>We may use your information to:</p>
+        <ul>
+          <li>Provide and improve our services.</li>
+          <li>Communicate with you about your account and the Platform.</li>
+          <li>Detect and prevent fraud and abuse.</li>
+          <li>Comply with legal obligations.</li>
+        </ul>
+      </div>
+      
+      <div class="section" id="liability">
+        <h2>8. Limitation of Liability</h2>
+        <p>Pixero is not responsible for:</p>
+        <ul>
+          <li>The quality, safety, or legality of services provided by Service Providers.</li>
+          <li>The conduct of users of the Platform.</li>
+          <li>Any direct, indirect, incidental, special, consequential, or punitive damages resulting from your use of the Platform.</li>
+        </ul>
+        
+        <div class="highlight">
+          <p>Our liability is limited to the maximum extent permitted by law. In no event shall our total liability exceed the amount paid by you to Pixero in the 12 months preceding the event giving rise to the liability.</p>
+        </div>
+      </div>
+      
+      <div class="section" id="disputes">
+        <h2>9. Dispute Resolution</h2>
+        <p>In the event of a dispute between users, we encourage you to first attempt to resolve the issue directly. If that is not possible, you agree to:</p>
+        <ul>
+          <li>Notify Pixero of the dispute.</li>
+          <li>Participate in our mediation process, if offered.</li>
+          <li>Resort to arbitration before pursuing litigation.</li>
+        </ul>
+        
+        <p>Any dispute between you and Pixero will be resolved in accordance with the laws of [Jurisdiction], without regard to conflict of law principles.</p>
+      </div>
+      
+      <div class="section" id="termination">
+        <h2>10. Termination</h2>
+        <p>Pixero may terminate or suspend your account and access to the Platform at any time, without prior notice or liability, for any reason, including if you breach these Terms.</p>
+        
+        <p>You may terminate your account at any time by following the instructions on the Platform. Upon termination:</p>
+        <ul>
+          <li>Your right to use the Platform will immediately cease.</li>
+          <li>Any outstanding payment obligations will remain in effect.</li>
+          <li>Certain provisions of these Terms will survive termination.</li>
+        </ul>
+      </div>
+      
+      <div class="section" id="changes">
+        <h2>11. Changes to Terms</h2>
+        <p>We may modify these Terms at any time. We will notify you of significant changes through the Platform or via email. Your continued use of the Platform after such modifications constitutes your acceptance of the revised Terms.</p>
+        
+        <p>It is your responsibility to review these Terms periodically for changes.</p>
+      </div>
+      
+      <div class="section" id="contact">
+        <h2>12. Contact Information</h2>
+        <p>If you have any questions about these Terms, please contact us at:</p>
+        <ul>
+          <li>Email: support@pixero.com</li>
+          <li>Postal Address: Pixero Headquarters, 123 Main Street, City, Country</li>
+          <li>Phone: +1 (555) 123-4567</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Pixero. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

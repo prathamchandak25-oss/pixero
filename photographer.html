@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographers</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #929292;
+            margin: 0;
+            padding: 0;    
+        }
+
+        h1 {
+            text-align: center;
+            color: #000000;
+            margin: 20px 0;
+            font-size: 2.5em;
+            text-shadow: 3px 4px 13px #000000c4;
+        }
+
+        .filter-container {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            font-family: sans-serif;
+        }
+
+        .filter-container select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 15px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            width: 15em;
+            font-family: sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .block {
+            width: 300px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            background-color: #ffffff;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .block img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #949494;
+            margin-bottom: 15px;
+        }
+
+        .block h3 {
+            color: #FFD700;
+            margin: 10px 0 5px;
+            font-size: 1.5em;
+        }
+
+        .block p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 50px;
+        }
+
+        .connect-button {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: #000000;
+            color: #FFD700;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .connect-button:hover {
+            background-color: #333333;
+            transform: scale(1.05);
+        }
+
+        .back {
+            position: fixed;
+            bottom: 2.5em;
+            right: 3em;
+            height: 4em;
+            width: 9em;
+            color: #000;
+            font-size: 1em;
+            border-radius: 2em;
+            border: none;
+            background-color: #FFD100;
+            z-index: 100;
+            font-weight: bolder;
+        }
+
+        @media screen and (max-width: 768px) {
+            .back {
+                display: none;
+            }
+        }
+
+
+        .back:hover {
+            transform: scale(1.1);
+            background-color: #E6BC00;
+            transition: all 400ms ease-in-out;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* From Uiverse.io by mobinkakei */
+        .wrapper {
+            width: 200px;
+            height: 60px;
+            position: relative;
+            top: 50vh;
+            left: 47vw;
+            z-index: 1;
+        }
+
+        .circle {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: #fff;
+            left: 15%;
+            transform-origin: 50%;
+            animation: circle7124 .5s alternate infinite ease;
+        }
+
+        @keyframes circle7124 {
+            0% {
+                top: 60px;
+                height: 5px;
+                border-radius: 50px 50px 25px 25px;
+                transform: scaleX(1.7);
+            }
+
+            40% {
+                height: 20px;
+                border-radius: 50%;
+                transform: scaleX(1);
+            }
+
+            100% {
+                top: 0%;
+            }
+        }
+
+        .circle:nth-child(2) {
+            left: 45%;
+            animation-delay: .2s;
+        }
+
+        .circle:nth-child(3) {
+            left: auto;
+            right: 15%;
+            animation-delay: .3s;
+        }
+
+        .shadow {
+            width: 20px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.9);
+            position: absolute;
+            top: 62px;
+            transform-origin: 50%;
+            z-index: -1;
+            left: 15%;
+            filter: blur(1px);
+            animation: shadow046 .5s alternate infinite ease;
+        }
+
+        @keyframes shadow046 {
+            0% {
+                transform: scaleX(1.5);
+            }
+
+            40% {
+                transform: scaleX(1);
+                opacity: .7;
+            }
+
+            100% {
+                transform: scaleX(.2);
+                opacity: .4;
+            }
+        }
+
+        .shadow:nth-child(4) {
+            left: 45%;
+            animation-delay: .2s
+        }
+
+        .shadow:nth-child(5) {
+            left: auto;
+            right: 15%;
+            animation-delay: .3s;
+        }
+
+        #loader {
+            transition: opacity 0.5s ease;
+        }
+
+        #loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Photographers</h1>
+
+    <div id="loader">
+        <div class="wrapper">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+        </div>
+    </div>
+
+
+
+    <div class="filter-container">
+        <label for="city-filter">Filter by City:</label>
+        <select id="city-filter">
+            <option value="all">All</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Dadar">Dadar</option>
+            <option value="Panvel">Panvel</option>
+            <option value="Navi Mumbai">Navi Mumbai</option>
+            <option value="Thane">Thane</option>
+            <option value="Pune">Pune</option>
+        </select>
+    </div>
+
+    <div class="container" id="photographer-list"></div>
+
+    <button class="back"><a href="index.html">Go to Home</a></button>
+
+    <script> 
+        let photographers = [];
+
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('/get_creators?type=photographer')
+                .then(response => response.json())
+                .then(data => {
+                    photographers = data.creators;
+                    displayPhotographers(photographers);
+                })
+                .catch(error => console.error('Error fetching photographers:', error));
+        });
+
+        function displayPhotographers(list) {
+            const container = document.getElementById('photographer-list');
+            container.innerHTML = '';
+
+            list.forEach(creator => {
+                const block = document.createElement('div');
+                block.className = 'block';
+                block.innerHTML = `
+               <img src="data:image/jpeg;base64,${creator.profile_photo}" alt="Profile"   onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg';">
+                    <h3>${creator.full_name}</h3>
+                    <p>${creator.location}</p>
+                    <button class="connect-button" data-id="${creator.id}">Connect +</button>
+                `;
+                container.appendChild(block);
+            });
+
+            document.querySelectorAll(".connect-button").forEach(button => {
+                button.addEventListener("click", function () {
+                    const creatorId = this.getAttribute("data-id");
+                    window.location.href = `portfolio.html?creator_id=${creatorId}`;
+                });
+            });
+        }
+
+        document.getElementById("city-filter").addEventListener("change", function () {
+            const selectedCity = this.value;
+            if (selectedCity === "all") {
+                displayPhotographers(photographers);
+            } else {
+                const filteredList = photographers.filter(creator => creator.location.toLowerCase().includes(selectedCity.toLowerCase()));
+                displayPhotographers(filteredList);
+            }
+        });
+
+
+
+        // loader hiding
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('/get_creators?type=photographer')
+                .then(response => response.json())
+                .then(data => {
+                    photographers = data.creators;
+                    displayPhotographers(photographers);
+                    document.getElementById('loader').classList.add('hidden');
+                })
+
+                .catch(error => {
+                    console.error('Error fetching photographers:', error);
+                    document.getElementById('loader').style.display = 'none'; // Hide loader even if there's an error
+                });
+        });
+
+    </script>
+</body>
+
+</html>

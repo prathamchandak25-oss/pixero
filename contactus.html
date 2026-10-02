@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Photography & Editing Services</title>
+    <style>
+        :root {
+            --yellow: #FFD700;
+            --black: #121212;
+            --dark-gray: #333333;
+            --medium-gray: #666666;
+            --light-gray: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--black);
+            color: var(--yellow);
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h2 {
+            color: var(--yellow);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-item i {
+            margin-right: 1rem;
+            color: var(--yellow);
+            font-size: 1.5rem;
+        }
+
+        .contact-form {
+            flex: 2;
+            min-width: 300px;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h2 {
+            color: var(--black);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 3px solid var(--yellow);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--yellow);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: var(--yellow);
+            color: var(--black);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #e6c300;
+            transform: translateY(-2px);
+        }
+
+        .service-icons {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .service-icon {
+            text-align: center;
+        }
+
+        .service-icon i {
+            font-size: 3rem;
+            color: var(--yellow);
+            background-color: var(--black);
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .service-icon h3 {
+            color: var(--dark-gray);
+        }
+
+        footer {
+            background-color: var(--black);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--yellow);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: white;
+        }
+
+        /* Comments Section Styles */
+        .comments-section {
+            margin-top: 3rem;
+            height: 32em;
+            overflow: hidden;
+        }
+
+        .comments-section h2 {
+            color: var(--black);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 3px solid var(--yellow);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .comment {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: var(--dark-gray);
+        }
+
+        .comment-date {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        .comment-content {
+            margin-bottom: 0.8rem;
+        }
+
+        .comment-rating {
+            color: var(--yellow);
+            margin-bottom: 0.5rem;
+        }
+
+
+        .back {
+            position: fixed;
+            bottom: 2.5em;
+            right: 3em;
+            height: 4em;
+            width: 9em;
+            color: #000;
+            font-size: 1em;
+            border-radius: 2em;
+            border: none;
+            background-color: #FFD100;
+            z-index: 100;
+            font-weight: bolder;
+        }
+
+        @media screen and (max-width: 768px) {
+            .back {
+                display: none;
+            }
+        }
+
+
+        .back:hover {
+            transform: scale(1.1);
+            background-color: #E6BC00;
+            transition: all;
+            transition-duration: 400ms;
+            transition-timing-function: ease-in-out;
+        }
+
+        .back a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+
+        .comments-section {
+            margin-top: 3rem;
+            height: 23em;
+            /* Fixed height container */
+            overflow: hidden;
+            background: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .comments-container {
+            height: calc(100% - 3rem);
+            /* Adjust for the section title */
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        #comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            will-change: transform;
+            /* Optimizes for animations */
+        }
+
+        .comment {
+            padding: 15px;
+            background: #f1f1f1;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            text-align: left;
+            min-height: 100px;
+            /* Minimum height to prevent tiny comments */
+            max-height: calc(50% - 5px);
+            /* Maximum height half of visible area */
+            overflow: auto;
+            /* Add scrolling for very long comments */
+            flex-shrink: 0;
+            /* Prevents comment from shrinking */
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .comment-date {
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        .comment-content {
+            overflow: hidden;
+        }
+
+        .comment-content p {
+            margin: 0;
+        }
+
+        /* Add a fade effect at the top and bottom of the container */
+        .comments-container::before,
+        .comments-container::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 15px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .comments-container::before {
+            top: 0;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        .comments-container::after {
+            bottom: 0;
+            background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+
+
+
+
+
+
+        @media (max-width: 768px) {
+            .contact-wrapper {
+                flex-direction: column;
+            }
+
+            .service-icons {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <h1>Capture Perfect Moments</h1>
+        <p>Professional Photography & Editing Services</p>
+    </header>
+
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 1rem;">Contact Us</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">Ready to capture your special moments or
+            enhance your existing photos? Reach out to us to connect with our professional photographers and editors.
+        </p>
+
+        <div class="service-icons">
+            <div class="service-icon">
+                <i class="fas fa-camera"></i>
+                <h3>Photography</h3>
+            </div>
+            <div class="service-icon">
+                <i class="fas fa-edit"></i>
+                <h3>Editing</h3>
+            </div>
+        </div>
+
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h3>Phone</h3>
+                        <p>999-888-777-6</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h3>Email</h3>
+                        <p>pixero@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2>Leave a Message</h2>
+                <form id="comment-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" placeholder="Write your message or inquiry here..."
+                            required></textarea>
+                    </div>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+
+        </div>
+
+
+
+        <!-- <div class="comments-section">
+            <h2>What Our Clients Say</h2>      
+        </div> -->
+
+        <div class="comments-section">
+            <h2>What Our Clients Say</h2>
+            <div class="comments-container">
+                <div id="comments-list"></div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <footer>
+        <p>© 2025 Capture Perfect Moments. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <button class="back"><a href="index.html">Go to Home</a></button>
+
+
+
+
+    <script>document.getElementById("comment-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let name = document.getElementById("name").value.trim();
+            let message = document.getElementById("message").value.trim();
+
+            if (!name || !message) {
+                alert("Please enter both your name and message.");
+                return;
+            }
+
+            let formData = { name, message };
+
+            fetch("/submit_review", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    alert(data.message);
+                    document.getElementById("comment-form").reset();
+                    // Instead of completely refreshing, add the new comment
+                    addNewComment({
+                        name: name,
+                        message: message,
+                        created_at: new Date().toISOString()
+                    });
+                })
+                .catch((error) => console.error("Error:", error));
+        });
+
+        // Global variables to track slider state
+        let sliderInterval = null;
+        let isSliderInitialized = false;
+
+        function fetchReviews() {
+            fetch("/get_reviews")
+                .then((response) => response.json())
+                .then((data) => {
+                    let commentsList = document.getElementById("comments-list");
+                    commentsList.innerHTML = ""; // Clear old comments
+
+                    // Initialize with existing comments
+                    data.reviews.forEach((review) => {
+                        let commentDiv = createCommentElement(review);
+                        commentsList.appendChild(commentDiv);
+                    });
+
+                    // Start the slider if we have enough comments
+                    if (data.reviews.length >= 3) {
+                        initializeSlider();
+                    }
+                })
+                .catch((error) => console.error("Error:", error));
+        }
+
+        function createCommentElement(review) {
+            let commentDiv = document.createElement("div");
+            commentDiv.classList.add("comment");
+            commentDiv.innerHTML = `
+        <div class="comment-header">
+            <span class="comment-author">${review.name}</span>
+            <span class="comment-date">${new Date(review.created_at).toLocaleDateString()}</span>
+        </div>
+        <div class="comment-content">
+            <p>${review.message}</p>
+        </div>
+    `;
+            return commentDiv;
+        }
+
+        function addNewComment(review) {
+            let commentsList = document.getElementById("comments-list");
+            let newComment = createCommentElement(review);
+
+            // Add new comment to the end without disrupting animation
+            commentsList.appendChild(newComment);
+
+            // If this is the third comment and slider isn't running, start it
+            if (commentsList.children.length >= 3 && !isSliderInitialized) {
+                initializeSlider();
+            }
+        }
+
+        function initializeSlider() {
+            if (isSliderInitialized) return; // Prevent multiple initializations
+
+            isSliderInitialized = true;
+            let commentsList = document.getElementById("comments-list");
+            let currentIndex = 0;
+
+            // Create a continuous sliding effect
+            sliderInterval = setInterval(() => {
+                // Get current height of the first two comments (for accurate slide distance)
+                const firstComment = commentsList.children[currentIndex];
+                const secondComment = commentsList.children[currentIndex + 1];
+
+                if (!firstComment || !secondComment) return; // Safety check
+
+                const slideDistance = firstComment.offsetHeight + secondComment.offsetHeight + 20; // 20px for gaps
+
+                // Apply smooth transition
+                commentsList.style.transition = "transform 1s ease-in-out";
+                commentsList.style.transform = `translateY(-${slideDistance}px)`;
+
+                // After animation completes
+                setTimeout(() => {
+                    // Reset transform without animation
+                    commentsList.style.transition = "none";
+                    commentsList.style.transform = "translateY(0)";
+
+                    // Move the first two comments to the end
+                    commentsList.appendChild(firstComment);
+                    commentsList.appendChild(secondComment);
+
+                    // Update index (stays at 0 since we've moved elements)
+                    currentIndex = 0;
+                }, 1000);
+            }, 3000);
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchReviews);
+
+        // Cleanup function to prevent memory leaks if needed
+        function stopSlider() {
+            if (sliderInterval) {
+                clearInterval(sliderInterval);
+                sliderInterval = null;
+                isSliderInitialized = false;
+            }
+        }</script>
+
+
+</body>
+
+</html>

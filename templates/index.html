@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .login-form {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="email"], input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .profile {
+            margin-top: 30px;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .profile-photo {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .delete-form {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .delete-btn {
+            background-color: #e74c3c;
+        }
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+        .flash-message {
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #fdecea;
+            color: #e53935;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Creator Profile System</h1>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        
+        {% if not logged_in %}
+            <!-- Login Form -->
+            <div class="login-form">
+                <h2>Login to Your Profile</h2>
+                <form method="post" action="/">
+                    <input type="hidden" name="action" value="login">
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="text" id="phone" name="phone" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        {% else %}
+            <!-- Profile Display -->
+            <div class="profile">
+                <h2>Welcome, {{ creator.full_name }}!</h2>
+                
+                <!-- Basic Info Section -->
+                <div class="section">
+                    <h3>Basic Information</h3>
+                    {% if creator.profile_photo %}
+                        <img src="data:image/jpeg;base64,{{ creator.profile_photo }}" alt="Profile Photo" class="profile-photo">
+                    {% endif %}
+                    <p><strong>Creator Type:</strong> {{ creator.creator_type.capitalize() }}</p>
+                    <p><strong>Email:</strong> {{ creator.email }}</p>
+                    <p><strong>Phone:</strong> {{ creator.phone }}</p>
+                    <p><strong>Location:</strong> {{ creator.location }}</p>
+                    <p><strong>Experience:</strong> {{ creator.experience }} years</p>
+                    <p><strong>Availability:</strong> {{ creator.availability.replace('-', ' ').capitalize() }}</p>
+                    <p><strong>Member Since:</strong> {{ creator.created_at.strftime('%B %d, %Y') }}</p>
+                </div>
+                
+                <!-- Bio Section -->
+                <div class="section">
+                    <h3>Biography</h3>
+                    <p>{{ creator.bio }}</p>
+                </div>
+                
+                <!-- Equipment Section -->
+                {% if creator.equipment %}
+                <div class="section">
+                    <h3>Equipment</h3>
+                    <p>{{ creator.equipment }}</p>
+                </div>
+                {% endif %}
+                
+                <!-- Social Links Section -->
+                <div class="section">
+                    <h3>Social & Web</h3>
+                    {% if creator.website %}
+                        <p><strong>Website:</strong> <a href="{{ creator.website }}" target="_blank">{{ creator.website }}</a></p>
+                    {% endif %}
+                    {% if creator.instagram %}
+                        <p><strong>Instagram:</strong> <a href="https://instagram.com/{{ creator.instagram }}" target="_blank">@{{ creator.instagram }}</a></p>
+                    {% endif %}
+                </div>
+                
+                <!-- Services Section -->
+                {% if services %}
+                <div class="section">
+                    <h3>Services Offered</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Service Name</th>
+                                <th>Price</th>
+                                <th>Unit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for service in services %}
+                            <tr>
+                                <td>{{ service.service_name }}</td>
+                                <td>${{ service.price }}</td>
+                                <td>{{ service.unit }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                
+                <!-- Portfolio Section -->
+                {% if portfolio %}
+                <div class="section">
+                    <h3>Portfolio</h3>
+                    <ul>
+                        {% for item in portfolio %}
+                            <li><a href="{{ item.portfolio_link }}" target="_blank">{{ item.portfolio_link }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                
+                <!-- Payment Methods Section -->
+                {% if payment_methods %}
+                <div class="section">
+                    <h3>Accepted Payment Methods</h3>
+                    <ul>
+                        {% for method in payment_methods %}
+                            <li>{{ method.method.replace('-', ' ').capitalize() }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                
+                <!-- Delete Account Section -->
+                <div class="delete-form">
+                    <h3>Delete Account</h3>
+                    <p>Warning: This action cannot be undone. All your data will be permanently deleted.</p>
+                    <form method="post" action="/" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="creator_id" value="{{ creator.id }}">
+                        <button type="submit" class="delete-btn">Delete My Account</button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

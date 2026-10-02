@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Pixero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #000;
+            background-color: rgb(121 121 121 / 70%);
+            width: 100%;
+            height: 100%;
+            /* Add your background pattern here */
+            background-color: #ffffff;
+            background-image: radial-gradient(rgba(12, 12, 12, 0.171) 2px, transparent 0);
+            background-size: 30px 30px;
+            background-position: -5px -5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #FFD100;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FFD100;
+        }
+
+        .cta-button {
+            background-color: #FFD100;
+            color: #000;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #E6BC00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 209, 0, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgb(0 0 0 / 70%), rgb(159 159 159 / 70%)), url(/api/placeholder/1200/600) center / cover no-repeat;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero span {
+            color: #FFD100;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* About Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-light {
+            background-color: rgb(159 159 159 / 70%);
+        }
+
+        .section-dark {
+            background-color: rgb(159 159 159 / 70%);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #000;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            height: 4px;
+            width: 60%;
+            background-color: #FFD100;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Story Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Mission Section */
+        .mission-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .mission-box {
+            background-color: #ededed;
+            padding: 30px;
+            border-radius: 40px;
+            box-shadow: -1px -1px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            background: linear-gradient(45deg, #292929bd, #5050501a);
+        }
+
+        .mission-box:hover {
+            transform: translateY(-15px);
+        }
+
+        .mission-box h3 {
+            font-size: 1.5rem;
+            color: #000;
+            margin-bottom: 15px;
+        }
+
+        .mission-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #FFD100;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 155%;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 20px;
+            text-align: center;
+            background-color: #c3c3c3c2;
+        }
+
+        .team-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .team-info p {
+            color: #FFD100;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: #000;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #FFD100;
+        }
+
+        /* Stats Section */
+        .stats-container {
+            background-color: #000;
+            color: white;
+            border-radius: 10px;
+            padding: 60px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #FFD100;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/api/placeholder/1200/400') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            border-radius: 10px;
+            margin: 80px 0;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta span {
+            color: #FFD100;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .secondary-button {
+            background-color: transparent;
+            color: white;
+            border: 2px solid #FFD100;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .secondary-button:hover {
+            background-color: #FFD100;
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            color: #fff;
+            padding: 60px 0 20px;
+            background: linear-gradient(180deg, #a0a0a0, #000000);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: #FFD100;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 40px;
+            background-color: #FFD100;
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #FFD100;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                /* For simplicity - would need js for mobile menu */
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+
+
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .back {
+                display: none;
+            }
+        }
+
+        .back {
+            position: fixed;
+            bottom: 2.5em;
+            right: 3em;
+            height: 4em;
+            width: 9em;
+            color: #000;
+            font-size: 1em;
+            border-radius: 2em;
+            border: none;
+            background-color: #FFD100;
+            z-index: 100;
+            font-weight: bolder;
+        }
+
+        .back:hover {
+            transform: scale(1.1);
+            background-color: #E6BC00;
+            transition: all;
+            transition-duration: 400ms;
+            transition-timing-function: ease-in-out;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>About <span>Pixero</span></h1>
+                <p>WHERE MOMENTS ARE CONVERTED INTO MEMORIES</p>
+                <p>Connecting creative professionals with clients worldwide through our innovative platform.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Story</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Founded in 2025, Pixero was born from a simple observation: finding and booking quality
+                        photography and editing services was unnecessarily complicated. Our founders, a team of
+                        photographers, developers, and design enthusiasts, set out to create a platform that would
+                        simplify this process while empowering creative professionals.</p>
+                    <br>
+                    <p>What started as a small community has grown into a global network connecting thousands of
+                        photographers and editors with clients who value quality visual content. Our mission remains
+                        unchanged: to democratize access to professional visual services and create opportunities for
+                        talented creators worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Mission</h2>
+            </div>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto;">At Pixero, we connect the creators with the
+                clients. We're committed to building a platform that serves both creators and clients alike.</p>
+
+            <div class="mission-boxes">
+                <div class="mission-box">
+                    <div class="mission-icon">📸</div>
+                    <h3>Quality Content</h3>
+                    <p>We connect you with vetted professionals who can bring your visual vision to life, whether for
+                        personal milestones or business needs.</p>
+                </div>
+                <div class="mission-box">
+                    <div class="mission-icon">🌟</div>
+                    <h3>Empowering Creators</h3>
+                    <p>We foster a community where creative professionals can thrive, showcase their unique talents, and
+                        build sustainable careers.</p>
+                </div>
+                <div class="mission-box">
+                    <div class="mission-icon">🤝</div>
+                    <h3>Seamless Experience</h3>
+                    <p>By streamlining bookings, providing secure payments, and facilitating communication, we create
+                        value for both creators and clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section section-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Team</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="Images/Vedant.jpg" alt="Vedant Ambavane">
+                    </div>
+                    <div class="team-info">
+                        <h3>Vedant Ambavane</h3>
+                        <p>Co-Founder & CEO</p>
+                        <div class="social-links">
+                            <a href="#"><span>in</span></a>
+                            <a href="#"><span>tw</span></a>
+                            <a href="#"><span>ig</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="Images/Pratham.jpg" alt="Pratham Chandak ">
+                    </div>
+                    <div class="team-info">
+                        <h3>Pratham Chandak</h3>
+                        <p>Co-Founder & CTO</p>
+                        <div class="social-links">
+                            <a href="#"><span>in</span></a>
+                            <a href="#"><span>gh</span></a>
+                            <a href="#"><span>tw</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="Images/Prathamesh.jpg" alt="Prathamesh Chouhan ">
+                    </div>
+                    <div class="team-info">
+                        <h3>Prathamesh Chouhan</h3>
+                        <p>Co-Founder & CMO</p>
+                        <div class="social-links">
+                            <a href="#"><span>in</span></a>
+                            <a href="#"><span>tw</span></a>
+                            <a href="#"><span>ig</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="container">
+        <div class="cta">
+            <h2>Ready to Join the <span>Pixero</span> Community?</h2>
+            <p>Whether you're looking to hire top creative talent or showcase your skills to potential clients, Pixero
+                is the platform for you.</p>
+            <div class="cta-buttons">
+                <div class="cta-button"><a href="index.html">Hire a Professional</a></div>
+                <div class="secondary-button"><a href="creator.html">Join as a Creator</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Pixero</h3>
+                    <p>The premier platform connecting photographers and editors with clients worldwide.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="#">Find Photographers</a></li>
+                        <li><a href="#">Find Editors</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>contact@pixero.com</li>
+                        <li>+1 (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pixero. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <button class="back"><a href="index.html">Go to Home</a></button>
+
+</body>
+
+</html>

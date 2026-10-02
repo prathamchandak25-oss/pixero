@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Portfolio</title>
+    <style>
+        :root {
+            --primary-yellow: #ffd700;
+            --dark-grey: #333333;
+            --light-grey: #e0e0e0;
+            --medium-grey: #9e9e9e;
+            --black: #121212;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-grey);
+            color: var(--light-grey);
+        }
+
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--dark-grey);
+            z-index: 1000;
+        }
+
+        .loader.hidden {
+            display: none;
+        }
+
+        .wrapper {
+            width: 200px;
+            height: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .circle {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            border-radius: 50%;
+            background-color: var(--primary-yellow);
+            left: 15%;
+            transform-origin: 50%;
+            animation: circle7124 .5s alternate infinite ease;
+        }
+
+        @keyframes circle7124 {
+            0% {
+                top: 60px;
+                height: 5px;
+                border-radius: 50px 50px 25px 25px;
+                transform: scaleX(1.7);
+            }
+
+            40% {
+                height: 20px;
+                border-radius: 50%;
+                transform: scaleX(1);
+            }
+
+            100% {
+                top: 0%;
+            }
+        }
+
+        .circle:nth-child(2) {
+            left: 45%;
+            animation-delay: .2s;
+        }
+
+        .circle:nth-child(3) {
+            left: auto;
+            right: 15%;
+            animation-delay: .3s;
+        }
+
+        .shadow {
+            width: 20px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.2);
+            position: absolute;
+            top: 62px;
+            transform-origin: 50%;
+            z-index: -1;
+            left: 15%;
+            filter: blur(1px);
+            animation: shadow046 .5s alternate infinite ease;
+        }
+
+        @keyframes shadow046 {
+            0% {
+                transform: scaleX(1.5);
+            }
+
+            40% {
+                transform: scaleX(1);
+                opacity: .7;
+            }
+
+            100% {
+                transform: scaleX(.2);
+                opacity: .4;
+            }
+        }
+
+        .shadow:nth-child(4) {
+            left: 45%;
+            animation-delay: .2s;
+        }
+
+        .shadow:nth-child(5) {
+            left: auto;
+            right: 15%;
+            animation-delay: .3s;
+        }
+
+        .header {
+            background-color: var(--black);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--primary-yellow);
+        }
+
+        .header h1 {
+            color: var(--primary-yellow);
+        }
+
+        .back-button {
+            background-color: var(--primary-yellow);
+            color: var(--black);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #e6c300;
+            transform: translateY(-2px);
+        }
+
+        .back-button a {
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .profile-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .profile-image {
+            flex: 0 0 300px;
+        }
+
+        .profile-image img {
+            width: 100%;
+            border-radius: 50%;
+            border: 3px solid #818181;
+            object-fit: cover;
+            height: 300px;
+        }
+
+        .profile-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-details h2 {
+            color: var(--primary-yellow);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--medium-grey);
+            padding-bottom: 10px;
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+        }
+
+        .info-item label {
+            font-weight: bold;
+            color: var(--primary-yellow);
+            margin-right: 10px;
+            min-width: 120px;
+            display: inline-block;
+        }
+
+        .info-value {
+            color: var(--light-grey);
+        }
+
+        .section {
+            background-color: var(--black);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid var(--primary-yellow);
+        }
+
+        .section h3 {
+            color: var(--primary-yellow);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--medium-grey);
+            padding-bottom: 10px;
+        }
+
+        .bio-section {
+            line-height: 1.6;
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background-color: var(--dark-grey);
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid var(--medium-grey);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-yellow);
+        }
+
+        .service-name {
+            font-weight: bold;
+            color: var(--primary-yellow);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .service-price {
+            font-size: 1.1rem;
+        }
+
+        .contact-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .contact-item {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px;
+            background-color: var(--dark-grey);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--medium-grey);
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover{
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp {
+            background: linear-gradient(135deg, rgb(21 241 0 / 57%), rgb(1 255 18));
+        }
+
+        .email{
+            background: linear-gradient(138deg, rgb(0 78 255 / 70%), rgb(241 0 0), rgb(213 201 50 / 70%), rgb(40 255 1 / 70%));
+        }
+
+        .instagram {
+            background: linear-gradient(150deg, rgb(144 26 244 / 53%), rgb(255 0 129), rgb(255 252 50 / 74%));
+        }
+
+
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #acacac;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            color: var(--black);
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 2px solid white;
+        }
+
+        .contact-info a {
+            color: var(--light-grey);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: larger;
+        }
+
+       
+
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .payment-method {
+            background-color: var(--dark-grey);
+            color: var(--light-grey);
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--medium-grey);
+        }
+
+        .portfolio-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-link {
+            background-color: var(--dark-grey);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--medium-grey);
+        }
+
+        .portfolio-link a {
+            color: var(--primary-yellow);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .portfolio-link a:hover {
+            text-decoration: underline;
+        }
+
+        .availability-badge {
+            display: inline-block;
+            background-color: var(--primary-yellow);
+            color: var(--black);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+            }
+
+            .profile-image {
+                flex: 0 0 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .section h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+    <div id="loader" class="loader">
+        <div class="wrapper">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>Creator Portfolio</h1>
+        <button class="back-button" onclick="history.back()">← Go Back</button>
+
+    </header>
+
+    <div class="portfolio-container" id="portfolio-content">
+        <!-- Content will be loaded dynamically -->
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get creator ID from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const creatorId = urlParams.get('creator_id');
+
+            if (!creatorId) {
+                document.getElementById('portfolio-content').innerHTML = '<div class="section"><h3>Error</h3><p>No creator ID specified.</p></div>';
+                document.getElementById('loader').classList.add('hidden');
+                return;
+            }
+
+            // Fetch creator details
+            fetch(`/get_creator_details?id=${creatorId}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayCreatorDetails(data);
+                    document.getElementById('loader').classList.add('hidden');
+                })
+                .catch(error => {
+                    console.error('Error fetching creator details:', error);
+                    document.getElementById('portfolio-content').innerHTML = `
+                        <div class="section">
+                            <h3>Error</h3>
+                            <p>Failed to load creator details. Please try again later.</p>
+                        </div>
+                    `;
+                    document.getElementById('loader').classList.add('hidden');
+                });
+        });
+
+        function displayCreatorDetails(data) {
+            const creator = data.creator;
+            const services = data.services || [];
+            const portfolio = data.portfolio || [];
+            const paymentMethods = data.payment_methods || [];
+
+            const content = document.getElementById('portfolio-content');
+
+            // Build profile section
+            let html = `
+                <div class="profile-section">
+                    <div class="profile-image">
+                        <img src="data:image/jpeg;base64,${creator.profile_photo}" alt="${creator.full_name}" onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg';">
+                    </div>
+                    <div class="profile-details">
+                        <h2>${creator.full_name}</h2>
+                        <div class="info-item">
+                            <label>Location:</label>
+                            <span class="info-value">${creator.location}</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Experience:</label>
+                            <span class="info-value">${creator.experience} years</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Phone:</label>
+                            <span class="info-value">${creator.phone}</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Email:</label>
+                            <span class="info-value">${creator.email}</span>
+                        </div>
+                        ${creator.website ? `
+                        <div class="info-item">
+                            <label>Website:</label>
+                            <span class="info-value"><a href="${creator.website}" target="_blank" style="color: var(--primary-yellow);">${creator.website}</a></span>
+                        </div>` : ''}
+                        ${creator.instagram ? `
+                        <div class="info-item">
+                            <label>Instagram:</label>
+                            <span class="info-value"><a href="https://instagram.com/${creator.instagram.replace('@', '')}" target="_blank" style="color: var(--primary-yellow);">${creator.instagram}</a></span>
+                        </div>` : ''}
+                        <div class="availability-badge">${formatAvailability(creator.availability)}</div>
+                    </div>
+                </div>
+            `;
+
+            // Bio section
+            html += `
+                <div class="section bio-section">
+                    <h3>About</h3>
+                    <p>${creator.bio}</p>
+                </div>
+            `;
+
+            // Equipment section if applicable
+            if (creator.equipment) {
+                html += `
+                    <div class="section">
+                        <h3>Equipment</h3>
+                        <p>${creator.equipment}</p>
+                    </div>
+                `;
+            }
+
+            // Services section
+            if (services.length > 0) {
+                html += `
+                    <div class="section">
+                        <h3>Services</h3>
+                        <div class="services-list">
+                `;
+
+                services.forEach(service => {
+                    html += `
+                        <div class="service-card">
+                            <div class="service-name">${service.service_name}</div>
+                            <div class="service-price">₹${service.price} per ${service.unit}</div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Portfolio links section
+            if (portfolio.length > 0) {
+                html += `
+                    <div class="section">
+                        <h3>Portfolio</h3>
+                        <div class="portfolio-links">
+                `;
+
+                portfolio.forEach(item => {
+                    html += `
+                        <div class="portfolio-link">
+                            <a href="${item.portfolio_link}" target="_blank">
+                                <span>View Work</span>
+                                <span>→</span>
+                            </a>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Payment methods section
+            if (paymentMethods.length > 0) {
+                html += `
+                    <div class="section">
+                        <h3>Payment Methods</h3>
+                        <div class="payment-methods">
+                `;
+
+                paymentMethods.forEach(method => {
+                    html += `
+                        <div class="payment-method">${formatPaymentMethod(method.method)}</div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Contact section
+            html += `
+                <div class="section">
+                    <h3>Contact</h3>
+                    <div class="contact-section">
+                      <div class="contact-item whatsapp">
+                            <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                               <div class="contact-info">
+                                    <a  href="https://wa.me/${creator.phone}" target="_blank">WhatsApp</a>
+                                      </div>
+                                    </div>
+
+
+                       <div class="contact-item email">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                         <div class="contact-info">
+                                     <a href="https://mail.google.com/mail/?view=cm&to=${creator.email}" target="_blank">Email</a>
+                                    </div>
+                               </div>
+
+                     ${creator.instagram ? `
+                         <div class="contact-item instagram">
+                          <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+                             <div class="contact-info">
+                                <a href="https://instagram.com/${creator.instagram.replace('@', '')}" target="_blank">Instagram</a>
+                             </div>
+                         </div>` : ''}
+                     </div>
+                 </div>
+                        `;
+
+            content.innerHTML = html;
+        }
+
+        function formatAvailability(availability) {
+            const availabilityMap = {
+                'full-time': 'Full Time',
+                'part-time': 'Part Time',
+                'weekends': 'Weekends Only',
+                'custom': 'Custom Schedule'
+            };
+            return availabilityMap[availability] || availability;
+        }
+
+        function formatPaymentMethod(method) {
+            const methodMap = {
+                'bank-transfer': 'Bank Transfer',
+                'paypal': 'PayPal',
+                'credit-card': 'Credit Card',
+                'cash': 'Cash'
+            };
+            return methodMap[method] || method;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixero - Connect with Photographers & Editors</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="camera-icon">📸</div>
+                <span>Pixero</span>
+            </a>
+            <button class="mobile-toggle">☰</button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="photographer.html">Find Photographers</a></li>
+                    <li><a href="editor.html">Find Editors</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contactus.html">Contact Us</a></li>
+                    <li><a href="login.html" class="profile-btn">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Connect with Professional Photographers & Editors</h1>
+            <p>Find the perfect creative talent for your project. Book, collaborate, and create stunning visual content with ease.</p>
+            <div class="hero-buttons">
+                <a href="photographer.html" class="btn btn-primary">Find a Photographer</a>
+                <a href="editor.html" class="btn btn-outline">Find an Editor</a>
+            </div>
+            <div class="hero-buttons">
+                <a href="creator.html" class="btn btn-outline">Join as a Creator</a>
+            </div>
+        </div>
+        
+        <div class="scroll-down">↓</div>
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <p>Find the perfect photographer or editor for any occasion and bring your vision to life</p>
+        </div>
+        <div class="service-grid">
+            <div class="service-card">
+                <img src="https://blissfulplans.com/wp-content/uploads/2023/12/big-fat-indian-weddings-1.jpg" alt="Wedding Photography" class="service-img">
+                <div class="service-content">
+                    <h3>Wedding Photography</h3>
+                    <p>Capture your special day with our curated selection of wedding photographers who specialize in creating timeless memories.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://media.istockphoto.com/id/628648170/photo/close-up-of-man-praying.jpg?s=612x612&w=0&k=20&c=QBbfCXDWWABi82VPkSWQjSaaiG6PUzMTiwCcpsx9xaM=" alt="Portrait Photography" class="service-img">
+                <div class="service-content">
+                    <h3>Portrait Sessions</h3>
+                    <p>From professional headshots to family portraits, find photographers who capture personality and emotion in every shot.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://thelenslounge.com/wp-content/uploads/2024/07/before-and-after-editing-examples.jpg" alt="Photo Editing" class="service-img">
+                <div class="service-content">
+                    <h3>Photo Editing</h3>
+                    <p>Connect with skilled photo editors for retouching, color grading, and transforming your images into works of art.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://s.studiobinder.com/wp-content/uploads/2020/08/What-is-Commercial-Photography-%E2%80%94-Gear-Lighting-Style-Tips-Featured.jpg" alt="Commercial Photography" class="service-img">
+                <div class="service-content">
+                    <h3>Commercial Projects</h3>
+                    <p>Elevate your brand with professional product photography, real estate shoots, and commercial visual content.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <!-- Featured Creators -->
+ 
+
+    <section class="featured">
+        <div class="featured-content">
+            <div class="section-title">
+                <h2>Our Creators</h2>
+                <p>Meet our photographers and editors ready to bring your vision to life</p>
+            </div>
+            
+            <div class="creator-grid" id="featured-creators-grid">
+                <!-- Featured creators will be loaded here dynamically -->
+                <div class="loader" id="featured-loader"></div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        let photographers = [];
+        let featuredPhotographers = [];
+        
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch all creators
+            fetch('/get_creators?type=photographer')
+                .then(response => response.json())
+                .then(data => {
+                    photographers = data.creators;
+                    displayPhotographers(photographers);
+                    selectRandomFeaturedCreators(photographers);
+                    document.getElementById('loader').classList.add('hidden');
+                })
+                .catch(error => {
+                    console.error('Error fetching photographers:', error);
+                    document.getElementById('loader').style.display = 'none';
+                });
+        });
+        
+        // Function to select 4 random creators for the featured section
+        function selectRandomFeaturedCreators(allCreators) {
+            // If we have less than 4 creators, use all of them
+            if (allCreators.length <= 4) {
+                featuredPhotographers = [...allCreators];
+            } else {
+                // Shuffle the array and pick the first 4
+                const shuffled = [...allCreators].sort(() => 0.5 - Math.random());
+                featuredPhotographers = shuffled.slice(0, 4);
+            }
+            
+            displayFeaturedCreators(featuredPhotographers);
+            document.getElementById('featured-loader')?.classList.add('hidden');
+        }
+        
+        // Function to display featured creators
+        function displayFeaturedCreators(creators) {
+            const container = document.getElementById('featured-creators-grid');
+            container.innerHTML = ''; // Clear the container
+            
+            creators.forEach(creator => {
+                const hourlyRate = creator.hourly_rate || Math.floor(Math.random() * 50) + 100; // Random between 100-150 if not available
+                
+                const card = document.createElement('div');
+                card.className = 'creator-card';
+                card.innerHTML = `
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/046/896/923/small/camera-lying-on-a-wooden-plain-surface-on-beautiful-background-top-view-photo.jpg" alt="Cover Photo" class="creator-cover">
+                    <div class="price-badge">$${hourlyRate}/hr</div>
+                    <img class="creator-profile" src="data:image/jpeg;base64,${creator.profile_photo}" 
+                         onerror="this.onerror=null; this.src='https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg';" 
+                         alt="${creator.full_name}">
+                    <div class="creator-info">
+                        <h3>${creator.full_name}</h3>
+                        <p>${creator.location || 'Location not specified'}</p>
+                        <a href="portfolio.html?creator_id=${creator.id}" class="btn btn-primary">View Profile</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        
+        function displayPhotographers(list) {
+            const container = document.getElementById('photographer-list');
+            if (!container) return; // Skip if the container doesn't exist
+            
+            container.innerHTML = '';
+            
+            list.forEach(creator => {
+                const block = document.createElement('div');
+                block.className = 'block';
+                block.innerHTML = `
+                    <img src="data:image/jpeg;base64,${creator.profile_photo}" alt="Profile" 
+                         onerror="this.onerror=null; this.src='https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg';">
+                    <h3>${creator.full_name}</h3>
+                    <p>${creator.location}</p>
+                    <button class="connect-button" data-id="${creator.id}">Connect +</button>
+                `;
+                container.appendChild(block);
+            });
+            
+            document.querySelectorAll(".connect-button").forEach(button => {
+                button.addEventListener("click", function () {
+                    const creatorId = this.getAttribute("data-id");
+                    window.location.href = `portfolio.html?creator_id=${creatorId}`;
+                });
+            });
+        }
+    </script>
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="section-title">
+            <h2>How It Works</h2>
+            <p>Find and book the perfect creative professional in just a few simple steps</p>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Search</h3>
+                <p>Browse our database of verified photographers and editors based on style, location, and budget.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Connect</h3>
+                <p>Review portfolios, read client reviews, and chat directly with potential matches.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Book</h3>
+                <p>Schedule your session, make secure payments, and get ready for your shoot.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Create</h3>
+                <p>Collaborate with your creator and receive your stunning finished photos.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <!-- Join Section -->
+    <section class="join-section">
+        <div class="join-content">
+            <h2>Join Our Creative Community</h2>
+            <p>Whether you're a photographer, editor, or client looking for creative services, Pixero is the platform for you.</p>
+            <div class="join-buttons">
+                <a href="creator.html" class="btn btn-primary">Join as a Creator</a>
+                <a href="#" class="btn btn-outline">Find a Professional</a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+  
+    
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Pixero</h3>
+                    <p>Connect with professional photographers and editors for your creative projects.</p>
+                
+                </div>
+                <div class="footer-column">
+                    <h3>For Clients</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Find a Photographer</a></li>
+                        <li><a href="#">Find an Editor</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Client Resources</a></li>
+                        <li><a href="#">Safety Tips</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>For Creators</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Join as a Creator</a></li>
+                        <li><a href="#">Creator Guide</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Community Standards</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pixero. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </footer>
+    
+      <script src="script.js"></script>
+    </body>
+    </html>
